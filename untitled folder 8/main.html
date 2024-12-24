@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Animations</title>
+    <link rel="stylesheet" href="style.css"> <!-- Optional: Add your CSS file -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f0e68c, #ffcc00); /* Gradient background */
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            height: 100vh; /* Full height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+            animation: fadeIn 1s ease-in; /* Fade-in animation */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 3em; /* Larger font size */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+            animation: slideIn 1s ease-in-out; /* Slide-in animation */
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Space between buttons */
+        }
+
+        button {
+            background-color: #ffcc00; /* Button color */
+            border: none;
+            border-radius: 12px; /* More rounded corners */
+            padding: 15px 30px;
+            font-size: 1.5em; /* Larger button text */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+            position: relative; /* For pseudo-element */
+            overflow: hidden; /* Hide overflow for pseudo-element */
+            font-weight: bold; /* Bold text */
+            color: #fff; /* White text for contrast */
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.2); /* Light overlay */
+            opacity: 0;
+            transition: opacity 0.3s; /* Smooth transition for overlay */
+        }
+
+        button:hover::before {
+            opacity: 1; /* Show overlay on hover */
+        }
+
+        button:hover {
+            background-color: #ff9900; /* Darker shade on hover */
+            transform: scale(1.1); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); /* Deeper shadow on hover */
+        }
+
+        button:focus {
+            outline: none; /* Remove outline on focus */
+            box-shadow: 0 0 0 4px rgba(255, 153, 0, 0.5); /* Focus ring for accessibility */
+        }
+
+        /* Add a sparkle effect */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em; /* Responsive font size */
+            }
+            button {
+                font-size: 1.2em; /* Responsive button size */
+                padding: 10px 20px; /* Responsive padding */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose a Birthday Animation</h1>
+    <div class="button-container">
+        <button onclick="window.location.href='birthday-master/index.html'">🎉 Birthday Animation 1</button>
+        <button onclick="window.location.href='happy-birthday/dist/index.html'">🎈 Birthday Animation 2</button>
+        <button onclick="window.location.href='happybirthday-main/index.html'">🎂 Birthday Animation 3</button>
+    </div>
+    <div class="sparkle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="sparkle" style="top: 30%; left: 50%; animation-delay: 0.5s;"></div>
+    <div class="sparkle" style="top: 70%; left: 80%; animation-delay: 1s;"></div>
+    <div class="sparkle" style="top: 40%; left: 30%; animation-delay: 1.5s;"></div>
+    <div class="sparkle" style="top: 60%; left: 70%; animation-delay: 2s;"></div>
+</body>
+</html>

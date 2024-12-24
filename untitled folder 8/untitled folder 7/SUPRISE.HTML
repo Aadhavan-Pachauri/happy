@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Animation</title>
+    <style>
+        body {
+            margin: 0;
+            height: 5000vh; /* Make the body taller for scrolling */
+            overflow-x: hidden;
+            background: #000; /* Match background color with video */
+        }
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%; /* Adjust as needed */
+            height: auto;
+            opacity: 0.8; /* Slight transparency */
+            display: none; /* Hide video initially */
+        }
+    </style>
+    <!-- Include ScrollMagic -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+</head>
+<body>
+    <video id="backgroundVideo" muted loop>
+        <source src="WHAT - SD 480p.mov" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        const video = document.getElementById('backgroundVideo');
+        const controller = new ScrollMagic.Controller();
+        const scene = new ScrollMagic.Scene({
+            triggerElement: document.body, // Trigger when the body is scrolled
+            duration: document.body.scrollHeight - window.innerHeight, // Duration of the scroll
+            triggerHook: 0 // Start at the top of the viewport
+        })
+        .on("enter", function () {
+            video.style.display = 'block'; // Show video when scrolling starts
+        })
+        .on("leave", function () {
+            video.style.display = 'none'; // Hide video when scrolling ends
+        })
+        .addTo(controller);
+
+        // Update video current time based on scroll position
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            const totalScrollHeight = document.body.scrollHeight - window.innerHeight;
+            const videoDuration = video.duration || 1; // Fallback to 1 to avoid NaN
+            
+            // Adjust the current time based on scroll position
+            const currentTime = (scrollPosition / totalScrollHeight) * videoDuration; // Sync video frame with scroll
+            video.currentTime = currentTime; // Update video current time
+        });
+
+        // Ensure the video is ready to play
+        video.addEventListener('loadedmetadata', function() {
+            video.currentTime = 0; // Start from the beginning
+        });
+    </script>
+</body>
+</html>
